@@ -205,6 +205,99 @@ document.addEventListener('DOMContentLoaded', () => {
     initMoreInfoSlider();
 });
 
+// Character Showcase Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const miniCards = document.querySelectorAll('.mini-card');
+    const characterImage = document.querySelector('.character-image');
+    const characterName = document.querySelector('.character-name');
+    const characterDescription = document.querySelector('.character-description');
+
+    const characterData = [
+        {
+            image: 'assets/images/moment1.jpg',
+            name: 'Uyên',
+            description: 'A precious friend in this vast world, bringing joy and warmth to those around her...'
+        },
+        {
+            image: 'assets/images/moment2.jpg',
+            name: 'Uyên',
+            description: 'With a gentle heart and bright smile, she lights up even the darkest days...'
+        },
+        {
+            image: 'assets/images/moment3.jpg',
+            name: 'Uyên',
+            description: 'Her presence is like a warm breeze on a spring day, refreshing and comforting...'
+        }
+    ];
+
+    miniCards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            // Remove active class from all cards
+            miniCards.forEach(c => c.classList.remove('active'));
+            // Add active class to clicked card
+            card.classList.add('active');
+            
+            // Update character info with animation
+            characterImage.style.opacity = '0';
+            characterName.style.opacity = '0';
+            characterDescription.style.opacity = '0';
+            
+            setTimeout(() => {
+                characterImage.src = characterData[index].image;
+                characterName.textContent = characterData[index].name;
+                characterDescription.textContent = characterData[index].description;
+                
+                characterImage.style.opacity = '1';
+                characterName.style.opacity = '1';
+                characterDescription.style.opacity = '1';
+            }, 300);
+        });
+    });
+});
+
+// Character Tab Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const characterImage = document.querySelector('.character-image');
+    const characterName = document.querySelector('.character-name');
+    const characterDescription = document.querySelector('.character-description');
+
+    const characterDescriptions = {
+        'moment1.jpg': "A precious friend in this vast world, bringing joy and warmth to those around her...",
+        'moment2.jpg': "With a gentle heart and bright smile, she lights up even the darkest days...",
+        'moment3.jpg': "Her presence is like a warm breeze on a spring day, refreshing and comforting...",
+        'moment4.jpg': "A beautiful soul with dreams as vast as the starlit sky..."
+    };
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            button.classList.add('active');
+
+            // Get image path from data attribute
+            const imagePath = button.getAttribute('data-image');
+            
+            // Fade out current content
+            characterImage.style.opacity = '0';
+            characterName.style.opacity = '0';
+            characterDescription.style.opacity = '0';
+
+            // Update content after fade out
+            setTimeout(() => {
+                characterImage.src = imagePath;
+                characterDescription.textContent = characterDescriptions[imagePath.split('/').pop()];
+                
+                // Fade in new content
+                characterImage.style.opacity = '1';
+                characterName.style.opacity = '1';
+                characterDescription.style.opacity = '1';
+            }, 300);
+        });
+    });
+});
+
 // Tạo hiệu ứng particle khi thổi nến
 function createParticles() {
     const particles = 30;
