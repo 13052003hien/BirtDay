@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 1.5rem;
+            animation: bounce 1s ease infinite;
+        }
+
+        input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: 2px solid #ffd8d8;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 8px rgba(255,107,107,0.4);
+        }
+
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+
+        .welcome-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .welcome-message.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .welcome-message h2 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .welcome-message p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .hint-text {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .hint-text:hover {
+            color: #ff6b6b;
+        }
+
+        .hint-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hint-popup.show {
+            display: block;
+        }
+
+        .close-hint {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #666;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h1>🎉 Chào mừng bạn 🎂</h1>
+        <input type="text" id="name" placeholder="Tên của bạn" autocomplete="off"/>
+        <input type="password" id="password" placeholder="Mật khẩu" />
+        <button onclick="login()">Vào trang chúc mừng</button>
+        <div id="error-msg" class="error-message"></div>
+        <div class="hint-text" onclick="showHint()">💡 Cần gợi ý đăng nhập?</div>
+    </div>
+
+    <div class="welcome-message" id="welcomeMsg">
+        <h2>🎉 Chào mừng Huỳnh Lê Kim Uyên</h2>
+        <p>✨ Chúc mừng sinh nhật ✨</p>
+    </div>
+
+    <div class="hint-popup" id="hintPopup">
+        <span class="close-hint" onclick="closeHint()">×</span>
+        <h3>🔑 Gợi ý đăng nhập</h3>
+        <p>Tên đăng nhập: Đây là tên đầy đủ của người sinh nhật (Ghi liền không dấu) 🎂</p>
+        <p>Mật khẩu: Đó là ngày sinh nhật của họ (ddmmyyyy) 🎈</p>
+        <p>Scam liệu hồn tui :V</p>
+    </div>
+
+    <audio id="loginSound" src="assets/sounds/login-success.mp4"></audio>
+    <audio id="loginError" src="assets/sounds/login-error.mp4"></audio>
+
+    <script>
+        function showHint() {
+            document.getElementById('hintPopup').classList.add('show');
+        }
+
+        function closeHint() {
+            document.getElementById('hintPopup').classList.remove('show');
+        }
+
+        function login() {
+            const name = document.getElementById("name").value;
+            const password = document.getElementById("password").value;
+            const errorMsg = document.getElementById("error-msg");
+            const welcomeMsg = document.getElementById("welcomeMsg");
+            const loginSound = document.getElementById("loginSound");
+            const loginError = document.getElementById("loginError");
+            
+            if (name === "HuynhLeKimUyen" && password === "24042003") {
+                localStorage.setItem("senderName", name);
+                welcomeMsg.classList.add("show");
+                loginSound.currentTime = 0; // Reset âm thanh về đầu
+                loginSound.play();
+                setTimeout(() => {
+                    loginSound.pause(); // Dừng âm thanh sau 3 giây
+                    loginSound.currentTime = 0;
+                }, 3000);
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 2000);
+            } else {
+                errorMsg.textContent = "Tên đăng nhập hoặc mật khẩu không đúng 😅";
+                errorMsg.classList.add("show");
+                loginError.currentTime = 0; // Reset âm thanh về đầu
+                loginError.play();
+                setTimeout(() => {
+                    loginError.pause(); // Dừng âm thanh sau 3 giây
+                    loginError.currentTime = 0;
+                }, 3000);
+                setTimeout(() => {
+                    errorMsg.classList.remove("show");
+                }, 3000);
+            }
+        }
+
+        // Add enter key support
+        document.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                login();
+            }
+        });
+
+        // Close hint popup when clicking outside
+        window.onclick = function(event) {
+            const hintPopup = document.getElementById('hintPopup');
+            if (event.target == hintPopup) {
+                closeHint();
+            }
+        }
+    </script>
+</body>
+</html>

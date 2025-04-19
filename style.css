@@ -1,0 +1,459 @@
+/* Reset và Font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('assets/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.main-title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #ff6b9d, #ff9ecd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+.title-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.line {
+    height: 2px;
+    width: 100px;
+    background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+}
+
+.sub-title {
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Navigation */
+.main-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.main-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ff6b9d;
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+    width: 100%;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    animation: bounce 2s infinite;
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    position: relative;
+}
+
+.mouse::before {
+    content: '';
+    width: 4px;
+    height: 8px;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 8px;
+    border-radius: 2px;
+    animation: scroll 2s infinite;
+}
+
+/* Cake Section */
+.cake-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+}
+
+.cake-container {
+    text-align: center;
+    perspective: 1000px;
+}
+
+/* Wishes Section */
+.wishes-section {
+    padding: 5rem 0;
+    background: #0a0a0a;
+}
+
+.wish-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    background: linear-gradient(45deg, #ff6b9d, #ff9ecd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.wishes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.wish-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.wish-card:hover {
+    transform: translateY(-10px);
+}
+
+.wish-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #fff;
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes scroll {
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    100% { transform: translate(-50%, 20px); opacity: 0; }
+}
+
+/* Action Button */
+.action-button {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: linear-gradient(45deg, #ff6b9d, #ff9ecd);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff9ecd, #ff6b9d);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.action-button:hover::before {
+    opacity: 1;
+}
+
+.action-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+/* Audio Control */
+.audio-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+}
+
+.audio-button {
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.audio-button:hover {
+    background: rgba(255, 107, 157, 0.8);
+    transform: scale(1.1);
+}
+
+.audio-button.muted .audio-icon {
+    opacity: 0.5;
+}
+
+.audio-icon {
+    font-size: 1.2rem;
+    color: white;
+    transition: opacity 0.3s ease;
+}
+
+/* Golden Text Style */
+.golden-text {
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    font-family: 'Cinzel', serif;
+}
+
+/* New Regions Section */
+.regions-section {
+    padding: 4rem 0;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+}
+
+.regions-slider {
+    position: relative;
+    height: 600px;
+    margin: 2rem auto;
+    max-width: 1400px;
+}
+
+.region-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.region-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.region-card.active {
+    opacity: 1;
+}
+
+.region-info {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    color: #fff;
+    max-width: 600px;
+}
+
+.region-name {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Cinzel', serif;
+    color: #FFD700;
+}
+
+.region-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.region-navigation {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-arrow {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #FFD700;
+    color: #FFD700;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.nav-arrow:hover {
+    background: #FFD700;
+    color: #000;
+}
+
+/* More Info Section */
+.more-info-section {
+    padding: 4rem 0;
+    background: #0a0a0a;
+}
+
+.info-slider {
+    margin-top: 2rem;
+    padding: 2rem;
+}
+
+.info-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-10px);
+}
+
+.info-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.info-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: #fff;
+}
+
+.info-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #FFD700;
+}
+
+.info-content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Swiper Customization */
+.swiper-pagination-bullet {
+    background: #FFD700;
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .regions-slider {
+        height: 400px;
+    }
+
+    .region-info {
+        left: 20px;
+        bottom: 20px;
+    }
+
+    .region-name {
+        font-size: 2rem;
+    }
+
+    .region-navigation {
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .info-card img {
+        height: 300px;
+    }
+
+    .info-content {
+        padding: 1.5rem;
+    }
+}
