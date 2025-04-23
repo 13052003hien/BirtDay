@@ -482,7 +482,7 @@ const CharacterShowcaseManager = {
         const tabButtons = document.querySelectorAll('.tab-button');
         const mainImage = document.querySelector('.character-preview .character-image');
         
-        if (!tabButtons || !mainImage) return;
+        if (!tabButtons.length || !mainImage) return;
         
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -492,16 +492,27 @@ const CharacterShowcaseManager = {
                 // Add active class to clicked button
                 button.classList.add('active');
                 
-                // Update main image
+                // Update main image with fade effect
                 const newImageSrc = button.getAttribute('data-image');
                 if (newImageSrc) {
                     mainImage.style.opacity = '0';
                     setTimeout(() => {
                         mainImage.src = newImageSrc;
-                        mainImage.style.opacity = '1';
+                        mainImage.onload = () => {
+                            mainImage.style.opacity = '1';
+                        };
                     }, 300);
                 }
             });
+        });
+
+        // Preload images for smooth transitions
+        tabButtons.forEach(button => {
+            const imgSrc = button.getAttribute('data-image');
+            if (imgSrc) {
+                const img = new Image();
+                img.src = imgSrc;
+            }
         });
     }
 };
