@@ -484,6 +484,9 @@ const CharacterShowcaseManager = {
         
         if (!tabButtons.length || !mainImage) return;
         
+        // Set initial active state
+        tabButtons[0].classList.add('active');
+        
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
                 // Remove active class from all buttons
@@ -506,7 +509,7 @@ const CharacterShowcaseManager = {
             });
         });
 
-        // Preload images for smooth transitions
+        // Preload all images for smooth transitions
         tabButtons.forEach(button => {
             const imgSrc = button.getAttribute('data-image');
             if (imgSrc) {
