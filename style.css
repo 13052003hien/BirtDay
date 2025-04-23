@@ -1096,8 +1096,8 @@ body {
     height: 60px;
     background: linear-gradient(to right, #fff, #f0f0f0);
     bottom: 150px;
-    left: 50%;
-    transform: translateX(-50%) translateZ(25px);
+    left: 115px; /* Adjusted from 50% to specific pixels to center it */
+    transform: translateZ(25px); /* Removed translateX(-50%) */
 }
 
 .flame {
@@ -1107,8 +1107,8 @@ body {
     background: linear-gradient(to bottom, #ff9d00, #ff0000);
     border-radius: 50% 50% 20% 20%;
     top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    transform: translateX(0);
     animation: flameFlicker 0.3s ease-in-out infinite alternate;
 }
 
@@ -1118,8 +1118,14 @@ body {
 }
 
 @keyframes flameFlicker {
-    0% { transform: translateX(-50%) scale(1); }
-    100% { transform: translateX(-50%) scale(0.9); }
+    0%, 100% {
+        transform: scale(1) rotate(-2deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.1) rotate(2deg);
+        opacity: 1;
+    }
 }
 
 .celebration-effects {
