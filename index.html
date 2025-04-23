@@ -3,189 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Uyên!</title>
+    <title>Đăng nhập - Happy Birthday Uyên!</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
-<body>
-    <!-- Include layout.html -->
-    <script>
-        fetch('layout.html')
-            .then(response => response.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const layoutDoc = parser.parseFromString(html, 'text/html');
-                const mainContent = layoutDoc.getElementById('main-content');
-                if (mainContent) {
-                    mainContent.innerHTML = document.getElementById('main-content').innerHTML;
-                }
-                document.body.innerHTML = layoutDoc.body.innerHTML;
+<body class="login-page">
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="assets/sounds/happy-birthday.mp4" type="audio/mp4">
+    </audio>
 
-                // Initialize scripts after content is loaded
-                if (typeof AOS !== 'undefined') {
-                    AOS.init({
-                        duration: 1000,
-                        once: true
-                    });
-                }
+    <!-- Audio Control Button -->
+    <div class="audio-control">
+        <button id="audioToggle" class="audio-button">
+            <span class="audio-icon">🔊</span>
+        </button>
+    </div>
+
+    <!-- Login Section -->
+    <div class="login-wrapper">
+        <div class="login-container" data-aos="zoom-in">
+            <div class="login-header">
+                <div class="login-logo">
+                    <span class="logo-icon">🎂</span>
+                </div>
+                <h1>Chào mừng đến với<br>Birthday Card</h1>
+                <p class="login-subtitle">Đăng nhập để vào trang chúc mừng sinh nhật nào! 🎉</p>
+            </div>
+            
+            <div class="login-form">
+                <div class="form-group">
+                    <div class="input-icon">👤</div>
+                    <input type="text" id="name" placeholder="Tên của bạn" autocomplete="off" data-aos="fade-up" data-aos-delay="200"/>
+                </div>
                 
-                // Initialize Swiper
-                if (typeof Swiper !== 'undefined') {
-                    new Swiper('.info-slider', {
-                        slidesPerView: 1,
-                        spaceBetween: 30,
-                        centeredSlides: true,
-                        loop: true,
-                        autoplay: {
-                            delay: 3000,
-                            disableOnInteraction: false,
-                        },
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                        },
-                        breakpoints: {
-                            768: {
-                                slidesPerView: 2,
-                            },
-                            1024: {
-                                slidesPerView: 3,
-                            }
-                        },
-                        effect: 'coverflow',
-                        coverflowEffect: {
-                            rotate: 50,
-                            stretch: 0,
-                            depth: 100,
-                            modifier: 1,
-                            slideShadows: true,
-                        }
-                    });
-                }
-            });
-    </script>
+                <div class="form-group">
+                    <div class="input-icon">🔒</div>
+                    <input type="password" id="password" placeholder="Mật khẩu" data-aos="fade-up" data-aos-delay="400"/>
+                </div>
 
-    <!-- Main Content -->
-    <div id="main-content">
-        <div class="parallax-wrapper">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="hero-content">
-                    <h1 class="main-title" data-aos="fade-up">Happy Birthday</h1>
-                    <div class="title-decoration" data-aos="fade-up" data-aos-delay="200">
-                        <span class="line"></span>
-                        <h2 class="sub-title">Huỳnh Lê Kim Uyên</h2>
-                        <span class="line"></span>
-                    </div>
+                <div id="error-msg" class="error-message"></div>
+                
+                <button class="login-button" onclick="login()" data-aos="fade-up" data-aos-delay="600">
+                    <span class="button-text">Vào trang chúc mừng</span>
+                    <span class="button-icon">🎉</span>
+                </button>
+                
+                <div class="hint-text" onclick="showHint()" data-aos="fade-up" data-aos-delay="800">
+                    <span class="hint-icon">💡</span>
+                    <span>Cần gợi ý đăng nhập?</span>
                 </div>
-                <div class="scroll-indicator">
-                    <span class="mouse"></span>
-                    <p>Scroll to Explore</p>
-                </div>
-            </section>
+            </div>
+        </div>
 
-            <!-- Character Showcase Section -->
-            <section class="character-showcase" id="moments">
-                <div class="character-card">
-                    <div class="character-info">
-                        <h2 class="character-name">Uyên</h2>
-                        <div class="character-stars">⭐⭐⭐⭐⭐</div>
-                        <p class="character-description">A precious friend in this vast world, bringing joy and warmth to those around her...</p>
-                    </div>
-                    <div class="character-preview">
-                        <img src="assets/images/moment1.jpg" alt="Character Preview" class="character-image">
-                    </div>
-                    <div class="character-tabs">
-                        <div class="tab-button active" data-image="assets/images/moment1.jpg">
-                            <img src="assets/images/moment1.jpg" alt="Uyên">
-                            <span>Uyên</span>
-                        </div>
-                        <div class="tab-button" data-image="assets/images/moment2.jpg">
-                            <img src="assets/images/moment2.jpg" alt="Uyên">
-                            <span>Uyên</span>
-                        </div>
-                        <div class="tab-button" data-image="assets/images/moment3.jpg">
-                            <img src="assets/images/moment3.jpg" alt="Uyên">
-                            <span>Uyên</span>
-                        </div>
-                        <div class="tab-button" data-image="assets/images/moment4.jpg">
-                            <img src="assets/images/moment4.jpg" alt="Uyên">
-                            <span>Uyên</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Wishes Section -->
-            <section class="wishes-section" id="wishes" data-aos="fade-up">
-                <div class="wish-container">
-                    <h3 class="section-title">Tuổi mới sắp đến, anh...</h3>
-                    <div class="wishes-grid">
-                        <div class="wish-card" data-aos="zoom-in">
-                            <p>Chúc em luôn xinh đẹp và tươi trẻ</p>
-                        </div>
-                        <div class="wish-card" data-aos="zoom-in" data-aos-delay="100">
-                            <p>Chúc em luôn vui vẻ và hạnh phúc</p>
-                        </div>
-                        <div class="wish-card" data-aos="zoom-in" data-aos-delay="200">
-                            <p>Chúc em thành công trên con đường đã chọn</p>
-                        </div>
-                        <div class="wish-card" data-aos="zoom-in" data-aos-delay="200">
-                            <p>Chúc em công việc ổn định</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Regions Section -->
-            <section class="regions-section">
-                <h2 class="section-title golden-text">Kỷ niệm</h2>
-                <div class="regions-slider">
-                    <div class="region-card active" style="background-image: url('assets/images/region1.jpg')">
-                        <div class="region-info">
-                            <h3 class="region-name">Kỷ niệm vui vẻ</h3>
-                            <p class="region-description">Những khoảnh khắc đáng nhớ của Uyên trong năm qua</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- More Info Section -->
-            <section class="more-info-section">
-                <h2 class="section-title golden-text">Xinh gái</h2>
-                <div class="swiper-container info-slider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="info-card">
-                                <img src="assets/images/moment1.jpg" alt="Khoảnh khắc 1">
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="info-card">
-                                <img src="assets/images/moment2.jpg" alt="Khoảnh khắc 2">
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="info-card">
-                                <img src="assets/images/moment3.jpg" alt="Khoảnh khắc 3">
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="info-card">
-                                <img src="assets/images/moment4.jpg" alt="Khoảnh khắc 4">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </section>
+        <!-- Decorative Elements -->
+        <div class="decorations">
+            <div class="decoration" style="--i:1">🎈</div>
+            <div class="decoration" style="--i:2">✨</div>
+            <div class="decoration" style="--i:3">🎁</div>
+            <div class="decoration" style="--i:4">🎊</div>
+            <div class="decoration" style="--i:5">💝</div>
+            <div class="decoration" style="--i:6">🌟</div>
+            <div class="decoration" style="--i:7">🎀</div>
+            <div class="decoration" style="--i:8">💫</div>
         </div>
     </div>
 
+    <!-- Welcome Message -->
+    <div class="welcome-message" id="welcomeMsg">
+        <div class="welcome-content" data-aos="fade-up">
+            <div class="welcome-icon">🎉</div>
+            <h2>Chào mừng Huỳnh Lê Kim Uyên</h2>
+            <p>✨ Chúc mừng sinh nhật em! ✨</p>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hint Popup -->
+    <div class="hint-popup" id="hintPopup">
+        <div class="hint-content">
+            <span class="close-hint" onclick="closeHint()">×</span>
+            <div class="hint-header">
+                <span class="hint-icon">🔑</span>
+                <h3>Gợi ý đăng nhập</h3>
+            </div>
+            <div class="hint-body">
+                <p><span class="hint-label">Tên đăng nhập:</span> 
+                Đây là tên đầy đủ của người sinh nhật (Ghi liền không dấu) 🎂</p>
+                <p><span class="hint-label">Mật khẩu:</span> 
+                Đó là ngày sinh nhật của họ (ddmmyyyy) 🎈</p>
+                <p class="hint-warning">Đừng scam đấy nhé :V</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sound Effects -->
+    <audio id="loginSound" preload="auto">
+        <source src="assets/sounds/login-success.mp4" type="audio/mp4">
+    </audio>
+    <audio id="loginError" preload="auto">
+        <source src="assets/sounds/login-error.mp4" type="audio/mp4">
+    </audio>
+
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <script src="script.js"></script>
 </body>
