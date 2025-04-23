@@ -476,6 +476,36 @@ const GalleryManager = {
     }
 };
 
+// Character Showcase Manager
+const CharacterShowcaseManager = {
+    init() {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const mainImage = document.querySelector('.character-preview .character-image');
+        
+        if (!tabButtons || !mainImage) return;
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Update main image
+                const newImageSrc = button.getAttribute('data-image');
+                if (newImageSrc) {
+                    mainImage.style.opacity = '0';
+                    setTimeout(() => {
+                        mainImage.src = newImageSrc;
+                        mainImage.style.opacity = '1';
+                    }, 300);
+                }
+            });
+        });
+    }
+};
+
 // Page Initialization
 function initializePage() {
     // Initialize AOS if available
@@ -535,6 +565,9 @@ document.addEventListener('DOMContentLoaded', () => {
     switch(currentPage) {
         case 'login.html':
             LoginManager.init();
+            break;
+        case 'home.html':
+            CharacterShowcaseManager.init();
             break;
         case 'cake.html':
             CakeManager.init();

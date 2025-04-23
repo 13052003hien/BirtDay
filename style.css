@@ -562,11 +562,12 @@ body {
 }
 
 .character-preview .character-image {
-    width: 500px;  /* Fixed width for main character image */
-    height: 700px; /* Fixed height for main character image */
+    width: 500px;
+    height: 700px;
     object-fit: cover;
     border-radius: 15px;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    opacity: 1;
 }
 
 .character-image {
