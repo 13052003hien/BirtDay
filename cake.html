@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bánh sinh nhật - Happy Birthday Uyên!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Include layout.html -->
+    <script>
+        fetch('layout.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const layoutDoc = parser.parseFromString(html, 'text/html');
+                const mainContent = layoutDoc.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.innerHTML = document.getElementById('main-content').innerHTML;
+                }
+                document.body.innerHTML = layoutDoc.body.innerHTML;
+
+                // Re-initialize scripts after content is loaded
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 1000,
+                        once: true
+                    });
+                }
+
+                // Initialize cake page specific features
+                if (typeof CakeManager !== 'undefined') {
+                    CakeManager.init();
+                }
+
+                // Re-initialize AudioManager
+                if (typeof AudioManager !== 'undefined') {
+                    AudioManager.init();
+                }
+            });
+    </script>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="cake-page">
+            <div class="cake-section">
+                <div class="cake-container" data-aos="zoom-in">
+                    <div class="cake">
+                        <div class="cake-bottom"></div>
+                        <div class="cake-middle"></div>
+                        <div class="cake-top"></div>
+                        <div class="candle">
+                            <div class="flame" id="flame"></div>
+                        </div>
+                    </div>
+                    <div class="cake-message" data-aos="fade-up" data-aos-delay="300">
+                        <h2>Hãy thổi nến đi nào! 🎂</h2>
+                    </div>
+                    <button id="blowCandle" class="action-button" data-aos="fade-up" data-aos-delay="500">Thổi nến 🌬️</button>
+                </div>
+                <div class="celebration-effects">
+                    <div class="confetti-container"></div>
+                    <div class="fireworks-container"></div>
+                </div>
+                <div class="birthday-message" style="opacity: 0; transform: translateY(20px);">
+                    <h1>Chúc mừng sinh nhật Uyên! 🎉</h1>
+                    <p>Chúc em một ngày sinh nhật thật đáng nhớ ✨</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sound Effects -->
+    <audio id="birthdayJingle" preload="auto">
+        <source src="assets/sounds/happy-birthday.mp4" type="audio/mp4">
+    </audio>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

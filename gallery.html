@@ -2,31 +2,152 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - Happy Birthday Uyên!</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navigation">
-        <a href="index.html">🏠 Trang chủ</a>
-        <a href="gallery.html" class="active">🖼️ Bộ sưu tập</a>
-    </nav>
+    <!-- Include layout.html -->
+    <script>
+        fetch('layout.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const layoutDoc = parser.parseFromString(html, 'text/html');
+                const mainContent = layoutDoc.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.innerHTML = document.getElementById('main-content').innerHTML;
+                }
+                document.body.innerHTML = layoutDoc.body.innerHTML;
 
-    <div class="header">
-        <h1>✨ Khoảnh khắc đáng yêu của Uyên ✨</h1>
-    </div>
+                // Re-initialize scripts after content is loaded
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 1000,
+                        once: true
+                    });
+                }
 
-    <div class="gallery-container">
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="assets/images/photo1.jpg" alt="Ảnh kỷ niệm 1" class="gallery-image">
+                // Initialize gallery specific features
+                if (typeof GalleryManager !== 'undefined') {
+                    GalleryManager.init();
+                }
+
+                // Initialize image loading
+                document.querySelectorAll('.gallery-image').forEach(img => {
+                    img.addEventListener('load', function() {
+                        this.parentElement.classList.add('loaded');
+                    });
+                    img.addEventListener('error', function() {
+                        this.parentElement.classList.add('error');
+                    });
+                });
+            });
+    </script>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="gallery-page">
+            <div class="header">
+                <h1 class="gallery-title" data-aos="fade-down">✨ Khoảnh khắc đáng yêu của Uyên ✨</h1>
+                <div class="title-decoration" data-aos="fade-up">
+                    <div class="line"></div>
+                    <span class="star">⭐</span>
+                    <div class="line"></div>
+                </div>
             </div>
-            <div class="gallery-item">
-                <video src="assets/videos/video1.mp4" controls class="gallery-video"></video>
+
+            <div class="gallery-filters" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">Tất cả</button>
+                <button class="filter-btn" data-filter="moments">Khoảnh khắc</button>
+                <button class="filter-btn" data-filter="regions">Vùng miền</button>
             </div>
-            <!-- Thêm nhiều hình ảnh và video khác tại đây -->
+
+            <div class="gallery-container">
+                <div class="gallery-grid">
+                    <!-- Moments -->
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment1.jpg" alt="Khoảnh khắc 1" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Khoảnh khắc đáng yêu</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="100">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment2.jpg" alt="Khoảnh khắc 2" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Nụ cười tươi tắn</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="200">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment3.jpg" alt="Khoảnh khắc 3" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Dễ thương ghê</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment4.jpg" alt="Khoảnh khắc 4" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Regions -->
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="400">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region1.jpg" alt="Vùng miền 1" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Chuyến đi vui vẻ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region2.jpg" alt="Vùng miền 2" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="600">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region3.jpg" alt="Vùng miền 3" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Địa điểm yêu thích</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="700">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region4.jpg" alt="Vùng miền 4" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Khám phá mới</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="gallery.js"></script>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

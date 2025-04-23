@@ -2,260 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Đăng nhập</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-        }
-
-        .login-container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem 3rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            text-align: center;
-            animation: fadeIn 1s ease-in;
-        }
-
-        h1 {
-            color: #ff6b6b;
-            margin-bottom: 1.5rem;
-            animation: bounce 1s ease infinite;
-        }
-
-        input {
-            width: 100%;
-            margin: 10px 0;
-            padding: 12px;
-            border: 2px solid #ffd8d8;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #ff6b6b;
-            box-shadow: 0 0 8px rgba(255,107,107,0.4);
-        }
-
-        button {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: transform 0.2s ease, background 0.2s ease;
-        }
-
-        button:hover {
-            background: #ff5252;
-            transform: translateY(-2px);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .error-message {
-            color: #ff4444;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .error-message.show {
-            opacity: 1;
-        }
-
-        .welcome-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            text-align: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s ease;
-        }
-
-        .welcome-message.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .welcome-message h2 {
-            color: #ff6b6b;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .welcome-message p {
-            color: #666;
-            font-size: 1.2rem;
-        }
-
-        .hint-text {
-            color: #888;
-            font-size: 0.85rem;
-            margin-top: 5px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .hint-text:hover {
-            color: #ff6b6b;
-        }
-
-        .hint-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-            z-index: 1000;
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .hint-popup.show {
-            display: block;
-        }
-
-        .close-hint {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            color: #666;
-            font-size: 1.2rem;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Happy Birthday Uyên!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+<body class="login-page">
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="assets/sounds/happy-birthday.mp4" type="audio/mp4">
+    </audio>
 
-<body>
-    <div class="login-container">
-        <h1>🎉 Chào mừng bạn 🎂</h1>
-        <input type="text" id="name" placeholder="Tên của bạn" autocomplete="off"/>
-        <input type="password" id="password" placeholder="Mật khẩu" />
-        <button onclick="login()">Vào trang chúc mừng</button>
-        <div id="error-msg" class="error-message"></div>
-        <div class="hint-text" onclick="showHint()">💡 Cần gợi ý đăng nhập?</div>
+    <!-- Audio Control Button -->
+    <div class="audio-control">
+        <button id="audioToggle" class="audio-button">
+            <span class="audio-icon">🔊</span>
+        </button>
     </div>
 
-    <div class="welcome-message" id="welcomeMsg">
-        <h2>🎉 Chào mừng Huỳnh Lê Kim Uyên</h2>
-        <p>✨ Chúc mừng sinh nhật ✨</p>
-    </div>
-
-    <div class="hint-popup" id="hintPopup">
-        <span class="close-hint" onclick="closeHint()">×</span>
-        <h3>🔑 Gợi ý đăng nhập</h3>
-        <p>Tên đăng nhập: Đây là tên đầy đủ của người sinh nhật (Ghi liền không dấu) 🎂</p>
-        <p>Mật khẩu: Đó là ngày sinh nhật của họ (ddmmyyyy) 🎈</p>
-        <p>Scam liệu hồn tui :V</p>
-    </div>
-
-    <audio id="loginSound" src="assets/sounds/login-success.mp4"></audio>
-    <audio id="loginError" src="assets/sounds/login-error.mp4"></audio>
-
-    <script>
-        function showHint() {
-            document.getElementById('hintPopup').classList.add('show');
-        }
-
-        function closeHint() {
-            document.getElementById('hintPopup').classList.remove('show');
-        }
-
-        function login() {
-            const name = document.getElementById("name").value;
-            const password = document.getElementById("password").value;
-            const errorMsg = document.getElementById("error-msg");
-            const welcomeMsg = document.getElementById("welcomeMsg");
-            const loginSound = document.getElementById("loginSound");
-            const loginError = document.getElementById("loginError");
+    <!-- Login Section -->
+    <div class="login-wrapper">
+        <div class="login-container" data-aos="zoom-in">
+            <div class="login-header">
+                <div class="login-logo">
+                    <span class="logo-icon">🎂</span>
+                </div>
+                <h1>Chào mừng đến với<br>Birthday Card</h1>
+                <p class="login-subtitle">Đăng nhập để vào trang chúc mừng sinh nhật nào! 🎉</p>
+            </div>
             
-            if (name === "HuynhLeKimUyen" && password === "24042003") {
-                localStorage.setItem("senderName", name);
-                welcomeMsg.classList.add("show");
-                loginSound.currentTime = 0; // Reset âm thanh về đầu
-                loginSound.play();
-                setTimeout(() => {
-                    loginSound.pause(); // Dừng âm thanh sau 3 giây
-                    loginSound.currentTime = 0;
-                }, 3000);
-                setTimeout(() => {
-                    window.location.href = "index.html";
-                }, 2000);
-            } else {
-                errorMsg.textContent = "Tên đăng nhập hoặc mật khẩu không đúng 😅";
-                errorMsg.classList.add("show");
-                loginError.currentTime = 0; // Reset âm thanh về đầu
-                loginError.play();
-                setTimeout(() => {
-                    loginError.pause(); // Dừng âm thanh sau 3 giây
-                    loginError.currentTime = 0;
-                }, 3000);
-                setTimeout(() => {
-                    errorMsg.classList.remove("show");
-                }, 3000);
-            }
-        }
+            <div class="login-form">
+                <div class="form-group">
+                    <div class="input-icon">👤</div>
+                    <input type="text" id="name" placeholder="Tên của bạn" autocomplete="off" data-aos="fade-up" data-aos-delay="200"/>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-icon">🔒</div>
+                    <input type="password" id="password" placeholder="Mật khẩu" data-aos="fade-up" data-aos-delay="400"/>
+                </div>
 
-        // Add enter key support
-        document.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                login();
-            }
-        });
+                <div id="error-msg" class="error-message"></div>
+                
+                <button class="login-button" onclick="login()" data-aos="fade-up" data-aos-delay="600">
+                    <span class="button-text">Vào trang chúc mừng</span>
+                    <span class="button-icon">🎉</span>
+                </button>
+                
+                <div class="hint-text" onclick="showHint()" data-aos="fade-up" data-aos-delay="800">
+                    <span class="hint-icon">💡</span>
+                    <span>Cần gợi ý đăng nhập?</span>
+                </div>
+            </div>
+        </div>
 
-        // Close hint popup when clicking outside
-        window.onclick = function(event) {
-            const hintPopup = document.getElementById('hintPopup');
-            if (event.target == hintPopup) {
-                closeHint();
-            }
-        }
-    </script>
+        <!-- Decorative Elements -->
+        <div class="decorations">
+            <div class="decoration" style="--i:1">🎈</div>
+            <div class="decoration" style="--i:2">✨</div>
+            <div class="decoration" style="--i:3">🎁</div>
+            <div class="decoration" style="--i:4">🎊</div>
+            <div class="decoration" style="--i:5">💝</div>
+            <div class="decoration" style="--i:6">🌟</div>
+            <div class="decoration" style="--i:7">🎀</div>
+            <div class="decoration" style="--i:8">💫</div>
+        </div>
+    </div>
+
+    <!-- Welcome Message -->
+    <div class="welcome-message" id="welcomeMsg">
+        <div class="welcome-content" data-aos="fade-up">
+            <div class="welcome-icon">🎉</div>
+            <h2>Chào mừng Huỳnh Lê Kim Uyên</h2>
+            <p>✨ Chúc mừng sinh nhật em! ✨</p>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hint Popup -->
+    <div class="hint-popup" id="hintPopup">
+        <div class="hint-content">
+            <span class="close-hint" onclick="closeHint()">×</span>
+            <div class="hint-header">
+                <span class="hint-icon">🔑</span>
+                <h3>Gợi ý đăng nhập</h3>
+            </div>
+            <div class="hint-body">
+                <p><span class="hint-label">Tên đăng nhập:</span> 
+                Đây là tên đầy đủ của người sinh nhật (Ghi liền không dấu) 🎂</p>
+                <p><span class="hint-label">Mật khẩu:</span> 
+                Đó là ngày sinh nhật của họ (ddmmyyyy) 🎈</p>
+                <p class="hint-warning">Đừng scam đấy nhé :V</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sound Effects -->
+    <audio id="loginSound" preload="auto">
+        <source src="assets/sounds/login-success.mp4" type="audio/mp4">
+    </audio>
+    <audio id="loginError" preload="auto">
+        <source src="assets/sounds/login-error.mp4" type="audio/mp4">
+    </audio>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chụp ảnh - Happy Birthday Uyên!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Include layout.html -->
+    <script>
+        fetch('layout.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const layoutDoc = parser.parseFromString(html, 'text/html');
+                const mainContent = layoutDoc.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.innerHTML = document.getElementById('main-content').innerHTML;
+                }
+                document.body.innerHTML = layoutDoc.body.innerHTML;
+
+                // Re-initialize scripts after content is loaded
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 1000,
+                        once: true
+                    });
+                }
+
+                // Initialize camera specific features
+                if (typeof CameraManager !== 'undefined') {
+                    CameraManager.init().catch(error => {
+                        console.error('Failed to initialize camera:', error);
+                        alert('Không thể truy cập camera. Vui lòng kiểm tra quyền truy cập camera.');
+                    });
+                }
+            });
+    </script>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="photo-page">
+            <div class="header">
+                <h1 class="photo-title" data-aos="fade-down">📸 Chụp ảnh kỷ niệm nào!</h1>
+                <div class="title-decoration" data-aos="fade-up">
+                    <div class="line"></div>
+                    <span class="camera-icon">📷</span>
+                    <div class="line"></div>
+                </div>
+            </div>
+
+            <div class="camera-section">
+                <div class="camera-container" data-aos="fade-up">
+                    <video id="video" autoplay playsinline></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    
+                    <div class="camera-controls">
+                        <div class="filter-controls" data-aos="fade-up" data-aos-delay="200">
+                            <button class="filter-btn active" data-filter="normal">🎨 Normal</button>
+                            <button class="filter-btn" data-filter="grayscale">⚫ Grayscale</button>
+                            <button class="filter-btn" data-filter="sepia">🟤 Sepia</button>
+                            <button class="filter-btn" data-filter="vintage">📷 Vintage</button>
+                            <button class="filter-btn" data-filter="brightness">✨ Bright</button>
+                        </div>
+                        
+                        <div class="emoji-controls" data-aos="fade-up" data-aos-delay="400">
+                            <button class="emoji-btn" data-emoji="❤️">❤️</button>
+                            <button class="emoji-btn" data-emoji="🎂">🎂</button>
+                            <button class="emoji-btn" data-emoji="🎉">🎉</button>
+                            <button class="emoji-btn" data-emoji="⭐">⭐</button>
+                            <button class="emoji-btn" data-emoji="✨">✨</button>
+                        </div>
+                        
+                        <div class="camera-actions" data-aos="fade-up" data-aos-delay="600">
+                            <button id="takePhoto" class="action-button primary">
+                                <span class="button-icon">📸</span>
+                                <span class="button-text">Chụp ảnh</span>
+                            </button>
+                            <button id="downloadPhoto" class="action-button" style="display: none;">
+                                <span class="button-icon">💾</span>
+                                <span class="button-text">Lưu ảnh</span>
+                            </button>
+                            <button id="retakePhoto" class="action-button" style="display: none;">
+                                <span class="button-icon">🔄</span>
+                                <span class="button-text">Chụp lại</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-section" data-aos="fade-up" data-aos-delay="800">
+                    <h2 class="preview-title">✨ Ảnh của bạn</h2>
+                    <div id="photoPreview" class="photo-preview"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

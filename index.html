@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,144 +8,185 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
-
 <body>
-    <!-- Audio Control Button -->
-    <div class="audio-control">
-        <button id="audioToggle" class="audio-button">
-            <span class="audio-icon">🔊</span>
-        </button>
+    <!-- Include layout.html -->
+    <script>
+        fetch('layout.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const layoutDoc = parser.parseFromString(html, 'text/html');
+                const mainContent = layoutDoc.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.innerHTML = document.getElementById('main-content').innerHTML;
+                }
+                document.body.innerHTML = layoutDoc.body.innerHTML;
+
+                // Initialize scripts after content is loaded
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 1000,
+                        once: true
+                    });
+                }
+                
+                // Initialize Swiper
+                if (typeof Swiper !== 'undefined') {
+                    new Swiper('.info-slider', {
+                        slidesPerView: 1,
+                        spaceBetween: 30,
+                        centeredSlides: true,
+                        loop: true,
+                        autoplay: {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        },
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                        breakpoints: {
+                            768: {
+                                slidesPerView: 2,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                            }
+                        },
+                        effect: 'coverflow',
+                        coverflowEffect: {
+                            rotate: 50,
+                            stretch: 0,
+                            depth: 100,
+                            modifier: 1,
+                            slideShadows: true,
+                        }
+                    });
+                }
+            });
+    </script>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="parallax-wrapper">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="main-title" data-aos="fade-up">Happy Birthday</h1>
+                    <div class="title-decoration" data-aos="fade-up" data-aos-delay="200">
+                        <span class="line"></span>
+                        <h2 class="sub-title">Huỳnh Lê Kim Uyên</h2>
+                        <span class="line"></span>
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <span class="mouse"></span>
+                    <p>Scroll to Explore</p>
+                </div>
+            </section>
+
+            <!-- Character Showcase Section -->
+            <section class="character-showcase" id="moments">
+                <div class="character-card">
+                    <div class="character-info">
+                        <h2 class="character-name">Uyên</h2>
+                        <div class="character-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="character-description">A precious friend in this vast world, bringing joy and warmth to those around her...</p>
+                    </div>
+                    <div class="character-preview">
+                        <img src="assets/images/moment1.jpg" alt="Character Preview" class="character-image">
+                    </div>
+                    <div class="character-tabs">
+                        <div class="tab-button active" data-image="assets/images/moment1.jpg">
+                            <img src="assets/images/moment1.jpg" alt="Uyên">
+                            <span>Uyên</span>
+                        </div>
+                        <div class="tab-button" data-image="assets/images/moment2.jpg">
+                            <img src="assets/images/moment2.jpg" alt="Uyên">
+                            <span>Uyên</span>
+                        </div>
+                        <div class="tab-button" data-image="assets/images/moment3.jpg">
+                            <img src="assets/images/moment3.jpg" alt="Uyên">
+                            <span>Uyên</span>
+                        </div>
+                        <div class="tab-button" data-image="assets/images/moment4.jpg">
+                            <img src="assets/images/moment4.jpg" alt="Uyên">
+                            <span>Uyên</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Wishes Section -->
+            <section class="wishes-section" id="wishes" data-aos="fade-up">
+                <div class="wish-container">
+                    <h3 class="section-title">Tuổi mới sắp đến, anh...</h3>
+                    <div class="wishes-grid">
+                        <div class="wish-card" data-aos="zoom-in">
+                            <p>Chúc em luôn xinh đẹp và tươi trẻ</p>
+                        </div>
+                        <div class="wish-card" data-aos="zoom-in" data-aos-delay="100">
+                            <p>Chúc em luôn vui vẻ và hạnh phúc</p>
+                        </div>
+                        <div class="wish-card" data-aos="zoom-in" data-aos-delay="200">
+                            <p>Chúc em thành công trên con đường đã chọn</p>
+                        </div>
+                        <div class="wish-card" data-aos="zoom-in" data-aos-delay="200">
+                            <p>Chúc em công việc ổn định</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Regions Section -->
+            <section class="regions-section">
+                <h2 class="section-title golden-text">Kỷ niệm</h2>
+                <div class="regions-slider">
+                    <div class="region-card active" style="background-image: url('assets/images/region1.jpg')">
+                        <div class="region-info">
+                            <h3 class="region-name">Kỷ niệm vui vẻ</h3>
+                            <p class="region-description">Những khoảnh khắc đáng nhớ của Uyên trong năm qua</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- More Info Section -->
+            <section class="more-info-section">
+                <h2 class="section-title golden-text">Xinh gái</h2>
+                <div class="swiper-container info-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="info-card">
+                                <img src="assets/images/moment1.jpg" alt="Khoảnh khắc 1">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="info-card">
+                                <img src="assets/images/moment2.jpg" alt="Khoảnh khắc 2">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="info-card">
+                                <img src="assets/images/moment3.jpg" alt="Khoảnh khắc 3">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="info-card">
+                                <img src="assets/images/moment4.jpg" alt="Khoảnh khắc 4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </section>
+        </div>
     </div>
 
-    <div class="parallax-wrapper">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="main-title" data-aos="fade-up">Happy Birthday</h1>
-                <div class="title-decoration" data-aos="fade-up" data-aos-delay="200">
-                    <span class="line"></span>
-                    <h2 class="sub-title">Huỳnh Lê Kim Uyên</h2>
-                    <span class="line"></span>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <span class="mouse"></span>
-                <p>Scroll to Explore</p>
-            </div>
-        </section>
-
-        <!-- Navigation -->
-        <nav class="main-nav">
-            <a href="index.html" class="active">Home</a>
-            <a href="gallery.html">Gallery</a>
-            <div class="nav-indicator"></div>
-        </nav>
-
-        <!-- Character Showcase Section -->
-        <section class="character-showcase">
-            <div class="character-card">
-                <div class="character-info">
-                    <h2 class="character-name">Uyên</h2>
-                    <div class="character-stars">⭐⭐⭐⭐⭐</div>
-                    <p class="character-description">A precious friend in this vast world, bringing joy and warmth to those around her...</p>
-                </div>
-                <div class="character-preview">
-                    <img src="assets/images/moment1.jpg" alt="Character Preview" class="character-image">
-                </div>
-                <div class="character-tabs">
-                    <div class="tab-button active" data-image="assets/images/moment1.jpg">
-                        <img src="assets/images/moment1.jpg" alt="Uyên">
-                        <span>Uyên</span>
-                    </div>
-                    <div class="tab-button" data-image="assets/images/moment2.jpg">
-                        <img src="assets/images/moment2.jpg" alt="Uyên">
-                        <span>Uyên</span>
-                    </div>
-                    <div class="tab-button" data-image="assets/images/moment3.jpg">
-                        <img src="assets/images/moment3.jpg" alt="Uyên">
-                        <span>Uyên</span>
-                    </div>
-                    <div class="tab-button" data-image="assets/images/moment4.jpg">
-                        <img src="assets/images/moment4.jpg" alt="Uyên">
-                        <span>Uyên</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Wishes Section -->
-        <section class="wishes-section" data-aos="fade-up">
-            <div class="wish-container">
-                <h3 class="section-title">Tuổi mới sắp đến, anh...</h3>
-                <div class="wishes-grid">
-                    <div class="wish-card" data-aos="zoom-in">
-                        <p>Chúc em luôn xinh đẹp và tươi trẻ</p>
-                    </div>
-                    <div class="wish-card" data-aos="zoom-in" data-aos-delay="100">
-                        <p>Chúc em luôn vui vẻ và hạnh phúc</p>
-                    </div>
-                    <div class="wish-card" data-aos="zoom-in" data-aos-delay="200">
-                        <p>Chúc em thành công trên con đường đã chọn</p>
-                    </div>
-                    <div class="wish-card" data-aos="zoom-in" data-aos-delay="200">
-                        <p>Chúc em công việc ổn định</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- New Regions Section -->
-        <section class="regions-section">
-            <h2 class="section-title golden-text">Kỷ niệm</h2>
-            <div class="regions-slider">
-                <div class="region-card active" style="background-image: url('assets/images/region1.jpg')">
-                    <div class="region-info">
-                        <h3 class="region-name">Kỷ niệm vui vẻ</h3>
-                        <p class="region-description">Những khoảnh khắc đáng nhớ của Uyên trong năm qua</p>
-                    </div>
-                </div>
-                <!-- <div class="region-navigation">
-                    <button class="nav-arrow prev">←</button>
-                    <button class="nav-arrow next">→</button>
-                </div> -->
-            </div>
-        </section>
-
-        <!-- More Info Section -->
-        <section class="more-info-section">
-            <h2 class="section-title golden-text">Xinh gái</h2>
-            <div class="swiper-container info-slider">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="info-card">
-                            <img src="assets/images/moment1.jpg" alt="Khoảnh khắc 1">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="info-card">
-                            <img src="assets/images/moment2.jpg" alt="Khoảnh khắc 2">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="info-card">
-                            <img src="assets/images/moment3.jpg" alt="Khoảnh khắc 3">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="info-card">
-                            <img src="assets/images/moment4.jpg" alt="Khoảnh khắc 4">
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </section>
-    </div>
-
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>
