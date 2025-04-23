@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+
 <body>
     <!-- Include layout.html -->
     <script>
@@ -36,10 +38,10 @@
 
                 // Initialize image loading
                 document.querySelectorAll('.gallery-image').forEach(img => {
-                    img.addEventListener('load', function() {
+                    img.addEventListener('load', function () {
                         this.parentElement.classList.add('loaded');
                     });
-                    img.addEventListener('error', function() {
+                    img.addEventListener('error', function () {
                         this.parentElement.classList.add('error');
                     });
                 });
@@ -58,18 +60,19 @@
                 </div>
             </div>
 
-            <div class="gallery-filters" data-aos="fade-up">
+            <!-- <div class="gallery-filters" data-aos="fade-up">
                 <button class="filter-btn active" data-filter="all">Tất cả</button>
                 <button class="filter-btn" data-filter="moments">Khoảnh khắc</button>
                 <button class="filter-btn" data-filter="regions">Vùng miền</button>
-            </div>
+            </div> -->
 
             <div class="gallery-container">
                 <div class="gallery-grid">
                     <!-- Moments -->
                     <div class="gallery-item" data-category="moments" data-aos="fade-up">
                         <div class="gallery-image-wrapper">
-                            <img src="assets/images/moment1.jpg" alt="Khoảnh khắc 1" class="gallery-image" loading="lazy">
+                            <img src="assets/images/moment1.jpg" alt="Khoảnh khắc 1" class="gallery-image"
+                                loading="lazy">
                             <div class="gallery-overlay">
                                 <span class="gallery-heart">❤️</span>
                                 <div class="gallery-caption">Khoảnh khắc đáng yêu</div>
@@ -78,7 +81,8 @@
                     </div>
                     <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="100">
                         <div class="gallery-image-wrapper">
-                            <img src="assets/images/moment2.jpg" alt="Khoảnh khắc 2" class="gallery-image" loading="lazy">
+                            <img src="assets/images/moment2.jpg" alt="Khoảnh khắc 2" class="gallery-image"
+                                loading="lazy">
                             <div class="gallery-overlay">
                                 <span class="gallery-heart">❤️</span>
                                 <div class="gallery-caption">Nụ cười tươi tắn</div>
@@ -87,7 +91,8 @@
                     </div>
                     <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="200">
                         <div class="gallery-image-wrapper">
-                            <img src="assets/images/moment3.jpg" alt="Khoảnh khắc 3" class="gallery-image" loading="lazy">
+                            <img src="assets/images/moment3.jpg" alt="Khoảnh khắc 3" class="gallery-image"
+                                loading="lazy">
                             <div class="gallery-overlay">
                                 <span class="gallery-heart">❤️</span>
                                 <div class="gallery-caption">Dễ thương ghê</div>
@@ -96,13 +101,135 @@
                     </div>
                     <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
                         <div class="gallery-image-wrapper">
-                            <img src="assets/images/moment4.jpg" alt="Khoảnh khắc 4" class="gallery-image" loading="lazy">
+                            <img src="assets/images/moment4.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
                             <div class="gallery-overlay">
                                 <span class="gallery-heart">❤️</span>
                                 <div class="gallery-caption">Xinh xắn quá</div>
                             </div>
                         </div>
                     </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment5.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment6.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment7.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment8.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment9.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment10.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment11.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment12.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment13.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment14.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment15.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="moments" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/moment16.jpg" alt="Khoảnh khắc 4" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Xinh xắn quá</div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <!-- Regions -->
                     <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="400">
@@ -123,24 +250,100 @@
                             </div>
                         </div>
                     </div>
-                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="600">
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
                         <div class="gallery-image-wrapper">
-                            <img src="assets/images/region3.jpg" alt="Vùng miền 3" class="gallery-image" loading="lazy">
+                            <img src="assets/images/region3.jpg" alt="Vùng miền 2" class="gallery-image" loading="lazy">
                             <div class="gallery-overlay">
                                 <span class="gallery-heart">❤️</span>
-                                <div class="gallery-caption">Địa điểm yêu thích</div>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
                             </div>
                         </div>
                     </div>
-                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="700">
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
                         <div class="gallery-image-wrapper">
-                            <img src="assets/images/region4.jpg" alt="Vùng miền 4" class="gallery-image" loading="lazy">
+                            <img src="assets/images/region4.jpg" alt="Vùng miền 2" class="gallery-image" loading="lazy">
                             <div class="gallery-overlay">
                                 <span class="gallery-heart">❤️</span>
-                                <div class="gallery-caption">Khám phá mới</div>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
                             </div>
                         </div>
                     </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region5.jpg" alt="Vùng miền 2" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region6.jpg" alt="Vùng miền 2" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region7.jpg" alt="Vùng miền 2" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region8.jpg" alt="Vùng miền 2" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region9.jpg" alt="Vùng miền 2" class="gallery-image" loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region10.jpg" alt="Vùng miền 2" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region11.jpg" alt="Vùng miền 2" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="regions" data-aos="fade-up" data-aos-delay="500">
+                        <div class="gallery-image-wrapper">
+                            <img src="assets/images/region12.jpg" alt="Vùng miền 2" class="gallery-image"
+                                loading="lazy">
+                            <div class="gallery-overlay">
+                                <span class="gallery-heart">❤️</span>
+                                <div class="gallery-caption">Kỷ niệm đáng nhớ</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -150,4 +353,5 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
